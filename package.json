@@ -1,7 +1,7 @@
 {
-  "name": "cordova-plugin-camera-preview",
-  "version": "0.9.0",
-  "description": "Cordova plugin that allows camera interaction from HTML code for showing camera preview below or on top of the HTML.",
+  "name": "kanayo-cordova-plugin-id-scanner",
+  "version": "0.1.0",
+  "description": "Cordova plugin that uses the camera to scan ids.",
   "keywords": [
     "cordova",
     "phonegap",
@@ -10,23 +10,22 @@
     "cordova-ios",
     "android",
     "ios",
-    "ionic",
     "camera",
     "cam",
-    "camera-preview",
-    "preview"
+    "id-scanner",
+    "ocr"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/cordova-plugin-camera-preview/cordova-plugin-camera-preview"
+    "url": "https://github.com/kanayo/kanayo-cordova-plugin-id-scanner"
   },
   "author": {
-    "name": "Weston Ganger",
-    "email": "westonganger@gmail.com",
-    "url": "solidfoundationwebdev.com"
+    "name": "Garth Smedley",
+    "email": "gsmedley@kanayo.com",
+    "url": "www.kanayo.com"
   },
   "license": "Apache 2.0",
-  "homepage": "https://github.com/cordova-plugin-camera-preview/cordova-plugin-camera-preview",
+  "homepage": "https://github.com/kanayo/kanayo-cordova-plugin-id-scanner",
   "dependencies": {
     "cordova": "*"
   },

@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin id="cordova-plugin-camera-preview" version="0.9.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="kanayo-cordova-plugin-id-scanner" version="0.9.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
 
-   <name>cordova-plugin-camera-preview</name>
-  <description>Cordova plugin that allows camera interaction from HTML code. Show camera preview popup on top of the HTML.</description>
+   <name>cordova--id-scanner</name>
+  <description>Cordova plugin that uses the camera and OCR to scan id numbers.</description>
   <license>Apache 2.0</license>
-  <keywords>cordova,phonegap,ecosystem:cordova,cordova-android,cordova-ios,android,ios,ionic,camera,cam,camera-preview,preview</keywords>
-  <repo>https://github.com/cordova-plugin-camera-preview/cordova-plugin-camera-preview.git</repo>
-  <issue>https://github.com/cordova-plugin-camera-preview/cordova-plugin-camera-preview/issues</issue>
+  <keywords>cordova,phonegap,ecosystem:cordova,cordova-android,android,camera,scanner</keywords>
+  <repo> https://github.com/kanayo/kanayo-cordova-plugin-id-scanner.git</repo>
+  <issue> https://github.com/kanayo/kanayo-cordova-plugin-id-scanner/issues</issue>
 
-  <js-module src="www/CameraPreview.js" name="CameraPreview">
-    <clobbers target="CameraPreview" />
+  <js-module src="www/IdScanner.js" name="IdScanner">
+    <clobbers target="IdScanner" />
   </js-module>
 
   <platform name="android">
-    <source-file src="src/android/CameraPreview.java" target-dir="src/com/cordovaplugincamerapreview" />
-    <source-file src="src/android/CameraActivity.java" target-dir="src/com/cordovaplugincamerapreview" />
-    <source-file src="src/android/CustomSurfaceView.java" target-dir="src/com/cordovaplugincamerapreview" />
-    <source-file src="src/android/Preview.java" target-dir="src/com/cordovaplugincamerapreview" />
-    <source-file src="src/android/TapGestureDetector.java" target-dir="src/com/cordovaplugincamerapreview" />
-    <source-file src="src/android/camera_activity.xml" target-dir="res/layout" />
-    <source-file src="src/android/camera_theme.xml" target-dir="res/values" />
-    <source-file src="src/android/camera_ids.xml" target-dir="res/values" />
+    <source-file src="src/android/IdScanner.java" target-dir="src/com/kanayo/cordova/idscanner" />
+    <source-file src="src/android/IdScannerActivity.java" target-dir="src/com/kanayo/cordova/idscanner" />
+    
+    <source-file src="src/android/camera/CameraSource.java" target-dir="src/com/kanayo/cordova/idscanner/camera" />
+    <source-file src="src/android/camera/CameraSourcePreview.java" target-dir="src/com/kanayo/cordova/idscanner/camera" />
+    <source-file src="src/android/camera/GraphicOverlay.java" target-dir="src/com/kanayo/cordova/idscanner/camera" />
+      
+    <source-file src="src/android/iso7064/Mod11_2.java" target-dir="src/com/kanayo/cordova/idscanner/iso7064" />
+    <source-file src="src/android/iso7064/Mod37_2.java" target-dir="src/com/kanayo/cordova/idscanner/iso7064" />
+    <source-file src="src/android/iso7064/Mod97_10.java" target-dir="src/com/kanayo/cordova/idscanner/iso7064" />
+    <source-file src="src/android/iso7064/Mod661_26.java" target-dir="src/com/kanayo/cordova/idscanner/iso7064" />
+    <source-file src="src/android/iso7064/Mod1271_36.java" target-dir="src/com/kanayo/cordova/idscanner/iso7064" />
+    <source-file src="src/android/iso7064/PureSystemCalculator.java" target-dir="src/com/kanayo/cordova/idscanner/iso7064" />
+   
+    <source-file src="src/android/ocr/OcrGraphic.java" target-dir="src/com/kanayo/cordova/idscanner/ocr" />
+    <source-file src="src/android/ocr/OcrDetectorProcessor.java" target-dir="src/com/kanayo/cordova/idscanner/ocr" />
+     
+    <source-file src="src/android/id_scanner_activity.xml" target-dir="res/layout" />
+    <source-file src="src/android/id_scanner_theme.xml" target-dir="res/values" />
+    <source-file src="src/android/id_scanner_ids.xml" target-dir="res/values" />
+
+    <framework src="com.google.android.gms:play-services-vision:11.0.1" />
+    <framework src="com.android.support:appcompat-v7:+" />
+    <framework src="com.android.support:design:+" />
 
     <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="CameraPreview">
-        <param name="android-package" value="com.cordovaplugincamerapreview.CameraPreview" />
+      <feature name="IdScanner">
+        <param name="android-package" value="com.kanayo.cordova.idscanner.IdScanner" />
         <param name="onload" value="true" />
       </feature>
     </config-file>
@@ -36,15 +52,16 @@
       <uses-permission android:name="android.permission.CAMERA" />
     </config-file>
 
+
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <activity android:name="com.cordovaplugincamerapreview.CameraActivity" android:screenOrientation="portrait" android:theme="@style/CameraPreviewTheme" />
+      <activity android:name="com.kanayo.cordova.idscanner.IdScannerActivity" android:screenOrientation="landscape" android:theme="@style/IdScannerTheme" />
     </config-file>
   </platform>
 
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
-      <feature name="CameraPreview">
-        <param name="ios-package" value="CameraPreview" onload="true" />
+      <feature name="IdScanner">
+        <param name="ios-package" value="IdScanner" onload="true" />
       </feature>
     </config-file>
 

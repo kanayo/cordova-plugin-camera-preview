@@ -926,8 +926,14 @@ public class CameraSource {
         // This corresponds to the rotation constants in {@link Frame}.
         mRotation = angle / 90;
 
-        camera.setDisplayOrientation(displayAngle);
-        parameters.setRotation(angle);
+        try{
+            camera.setDisplayOrientation(displayAngle);
+            parameters.setRotation(angle);
+        } catch(RuntimeException e){
+            // This fails on switch to front camera sometimes, but can still scan the id OK - GS
+            Log.e(TAG, "setDisplayOrientation failed: " + Integer.toString(displayAngle) + " "  + e.getMessage());
+        }
+
     }
 
     /**
